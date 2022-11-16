@@ -25,4 +25,4 @@ export const UploadFile = db.define('File', {
 })
 
 
-UploadFile.sync({alter: true})
+// UploadFile.sync({alter: true})

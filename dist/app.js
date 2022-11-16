@@ -15,8 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const index_1 = __importDefault(require("./src/routes/index"));
 const connection_1 = __importDefault(require("./src/database/connection"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const testConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield connection_1.default.authenticate();
@@ -30,11 +31,12 @@ const testConnection = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 // call a function
 testConnection();
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({
     extended: true
 }));
-app.use(express_1.default.static("./uploads"));
+app.use('/uploads', express_1.default.static('uploads'));
 app.use('/api', index_1.default);
 app.listen(PORT, () => {
     console.log(`app running at port ${PORT}`);

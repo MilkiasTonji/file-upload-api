@@ -26,4 +26,4 @@ exports.UploadFile = connection_1.default.define('File', {
         allowNull: false
     }
 });
-exports.UploadFile.sync({ alter: true });
+// UploadFile.sync({alter: true})

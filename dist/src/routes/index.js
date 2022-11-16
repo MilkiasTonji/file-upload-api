@@ -13,10 +13,13 @@ var storage = multer_1.default.diskStorage({
         callBack(null, './uploads');
     },
     filename: (req, file, callBack) => {
+        // console.log(file)
         callBack(null, file.fieldname + '-' + Date.now() + path_1.default.extname(file.originalname));
     }
 });
 const upload = (0, multer_1.default)({ storage: storage });
 app.get('/files', fileController_1.getAllUploadedFiles);
 app.post('/file', upload.single('file'), fileController_1.uploadFile);
+app.put('/file/:id', upload.single('file'), fileController_1.updateFile);
+app.delete('/file/:id', fileController_1.deletedFile);
 exports.default = app;

@@ -2,11 +2,11 @@
 import express, {Express} from 'express'
 import routes from './src/routes/index'
 import sequelize from './src/database/connection'
-
+import cors from 'cors'
 
 const app: Express = express()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 
 const testConnection = async () => {
     try {
@@ -23,12 +23,13 @@ const testConnection = async () => {
 // call a function
 testConnection()
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
 
-app.use(express.static("./uploads"))
+app.use('/uploads', express.static('uploads'))
 
 
 

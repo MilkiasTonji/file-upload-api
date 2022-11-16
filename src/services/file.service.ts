@@ -8,7 +8,7 @@ type fileType = {
 }
 
 export const getAllFiles = (offset: any, limit: any) => {
-    return UploadFile.findAndCountAll({offset, limit, order: ['createdAt', 'desc']})
+    return UploadFile.findAndCountAll({order: [['createdAt', 'desc']]})
 }
 
 export const createFile = (file: fileType) => {
